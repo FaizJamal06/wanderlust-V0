@@ -23,6 +23,7 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const MongoStore = require("connect-mongo");
 
 // Debug: log presence of Cloudinary env vars (avoid printing secrets)
 console.log('ENV loaded from', envPath, 'CLOUDINARY_CLOUD_NAME present:', !!process.env.CLOUDINARY_CLOUD_NAME);
@@ -39,32 +40,30 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-
-const seshStore = MongoStore.create({
+// Create a Mongo-backed session store. Ensure the secret comes from process.env
+const store = MongoStore.create({
   mongoUrl: db_url,
-  crypto:{
-    secret: env.process.SECRET,
+  crypto: {
+    secret: process.env.SECRET,
     touchAfter: 24 * 60 * 60
   }
 });
 
 const sessionOptions = {
-  secret: env.process.SECRET,
+  secret: process.env.SECRET || 'thisshouldbechanged',
   resave: false,
   saveUninitialized: true,
-  cookie : {
+  cookie: {
     httpOnly: true,
-    expires: Date.now() + 7*24*60*60*1000,
-    maxAge: 7*24*60*60*1000
-    
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000
   },
-  store : seshStore
-}
+  store: store
+};
 
-store.on("error", function(error) {
-  console.log( "seshstore error");
-})
-
+store.on("error", function (error) {
+  console.error("Session store error:", error);
+});
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -124,7 +123,6 @@ const reviewRoutes = require("./routes/review");
 app.use("/listings/:id/reviews", reviewRoutes);
 
 const userRoutes = require("./routes/user");
-const MongoStore = require("connect-mongo");
 app.use("/", userRoutes);
 
 
