@@ -177,21 +177,9 @@ body {
     height: 420px;
     object-fit: cover;
 }
-
-.booking-box .card {
-    border-radius: 12px;
-}
-
-.booking-box input[type="date"] {
-    height: 44px;
-}
-
 @media (max-width: 992px) {
     .listing-show .hero-img {
         height: 260px;
-    }
-    .booking-box {
-        position: static !important;
     }
 }
 
