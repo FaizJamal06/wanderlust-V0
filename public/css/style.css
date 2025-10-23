@@ -1,0 +1,267 @@
+/* body{
+    background-color: cadetblue;
+} */
+
+/* Make the page a column flex layout so footer can stick to bottom when content is short */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Ensure the main container in boilerplate grows to fill available space */
+.container.mt-3 {
+    flex: 1 0 auto;
+}
+
+.navbar {
+    height: 4.5rem;
+    padding-top: 0.5rem;
+    background-color:white;    /* Reduced top padding */
+}
+
+.navbar-nav {
+    margin-top: -0.7rem;    /* Negative margin to pull links up */
+}
+
+/* Navbar styles */
+.navbar-nav .nav-link {
+    font-size: 1.1rem;  /* Increases the font size of nav links */
+    font-weight: 500;   /* Makes the font slightly bolder */
+    margin: 0 6px;     /* Adds some spacing between links */
+    padding-top: 0;         /* Remove default top padding */
+}
+
+/* Font Awesome icon style */
+.navbar-brand {
+    margin-top: -0.8rem;    /* Pull brand/icon up */
+}
+
+.navbar-brand .fas {
+    font-size: 2rem;    /* Increases icon size */
+    margin-right: 5px; /* Adds space between icon and brand text */
+}
+
+/* Optional: Add hover effect on nav links */
+.navbar-nav .nav-link:hover {
+    color: #B197FC;     /* Matches your icon color */
+}
+
+/* Footer Styles */
+.footer {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.social-links a {
+    text-decoration: none;
+}
+
+.social-links i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.social-links i:hover {
+    transform: translateY(-3px);
+}
+
+/* Card styles */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px #B197FC;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+}
+
+.card-img-top {
+    height: 300px;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Description text overflow control */
+.card-text:first-of-type {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  /* Show only 3 lines of description */
+    line-clamp: 3;          /* Standard property for compatibility */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px #B197FC;
+    opacity: 1;
+    transform: translateY(-5px);
+}
+
+.listing-heading {
+    color: #B197FC;
+}
+
+/* Button Styles with increased specificity */
+.btn.btn-primary {
+    background-color: #B197FC !important;
+    border-color: #B197FC !important;
+    color: white;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn.btn-primary:hover {
+    background-color: #9d7ff7 !important;
+    border-color: #9d7ff7 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(177, 151, 252, 0.4);
+}
+
+.btn.btn-primary:active, 
+.btn.btn-primary:focus,
+.btn.btn-primary:focus-visible {
+    background-color: #B197FC !important;
+    border-color: #B197FC !important;
+    box-shadow: 0 0 0 0.25rem rgba(177, 151, 252, 0.5) !important;
+}
+
+/* Show page styles */
+.show-img {
+    height: 40vh;
+    object-fit: cover;
+    width: 100%;
+}
+
+.btns {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #bb2d3b;
+    border-color: #bb2d3b;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.4);
+}
+
+/* Heading style for listing creation */
+.text-center {
+    text-align: center;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+/* Listing show (Airbnb-like) styles */
+.listing-show .hero-img {
+    border-radius: 12px;
+    height: 420px;
+    object-fit: cover;
+}
+
+.booking-box .card {
+    border-radius: 12px;
+}
+
+.booking-box input[type="date"] {
+    height: 44px;
+}
+
+@media (max-width: 992px) {
+    .listing-show .hero-img {
+        height: 260px;
+    }
+    .booking-box {
+        position: static !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .listing-show .hero-img { height: 200px; }
+    .btn.btn-primary { padding: 10px 14px; }
+}
+
+/* Small utility for small metadata */
+.small-muted { color: #6c757d; font-size: 0.9rem; }
+
+/* Navbar search (themed) */
+.navbar-search-input {
+    border: 1px solid rgba(177,151,252,0.4);
+    box-shadow: none;
+}
+.navbar-search-input:focus {
+    outline: none;
+    border-color: #B197FC;
+    box-shadow: 0 0 0 0.2rem rgba(177,151,252,0.25);
+}
+.navbar-search-btn {
+    /* match the primary button style */
+    background-color: #B197FC !important;
+    border-color: #B197FC !important;
+    color: #fff !important;
+    padding: 6px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(177,151,252,0.12);
+}
+.navbar-search-btn:hover {
+    background-color: #9d7ff7 !important;
+    border-color: #9d7ff7 !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+}
+.navbar-search-btn:focus,
+.navbar-search-btn:active,
+.navbar-search-btn:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 0.25rem rgba(177,151,252,0.45) !important;
+}
+
+/* Centered search container responsive tweaks */
+@media (max-width: 992px) {
+    .mx-auto.d-none.d-lg-flex { display: none !important; }
+}
+@media (min-width: 992px) {
+    .navbar-nav .nav-link { margin-right: 12px; }
+}
+
+/* Desktop centered search sizing */
+.mx-auto.d-none.d-lg-flex { max-width: 680px; }
+.mx-auto.d-none.d-lg-flex .navbar-search-input { width: calc(100% - 110px); }
+
+/* Mobile search styling (inside collapsed menu) */
+.navbar-search-btn-mobile {
+        background-color: #B197FC !important;
+        border-color: #B197FC !important;
+        color: #fff !important;
+        padding: 8px 10px;
+        border-radius: 6px;
+}
+.navbar-search-btn-mobile i { width: 1rem; }
+.d-lg-none .navbar-search-input {
+        flex: 1 1 auto;
+}
+.d-lg-none form.d-flex { gap: 8px; }
+
+/* Ensure the desktop search input looks centered and balanced */
+.navbar .form-control.navbar-search-input { height: 40px; }
+
+

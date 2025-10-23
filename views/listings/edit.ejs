@@ -1,0 +1,136 @@
+<body>
+    <% layout("layouts/boilerplate") %>
+
+    <div class="row mt-3">
+      <div class="col-8 offset-2">
+        <h3 class="text-center mb-4" style="color: #B197FC;">Edit your Listing</h3>
+  <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" enctype="multipart/form-data" class="needs-validation" novalidate data-max-bytes="<%= JSON.stringify(process.env.MAX_UPLOAD_SIZE_BYTES || 20971520) %>">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input 
+              name="listing[title]" 
+              value="<%= listing.title %>" 
+              type="text"
+              class="form-control"
+              id="title"
+              placeholder="Enter title"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              name="listing[description]"
+              class="form-control"
+              id="description"
+              rows="3"
+              placeholder="Enter description"
+            ><%= listing.description %></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <% let currentImageSrc = '/images/placeholder.png'; %>
+            <% if (listing.image && listing.image.url) { currentImageSrc = listing.image.url; } else if (listing.image && listing.image.filename) { currentImageSrc = '/uploads/' + listing.image.filename; } %>
+            <div class="mb-2">
+              <img src="<%= currentImageSrc %>" alt="current image" class="img-fluid rounded" style="max-height:200px;">
+            </div>
+            <input
+              type="file"
+              name="listing[image]"
+              accept="image/*"
+              class="form-control"
+              id="image"
+              aria-describedby="imageHelp"
+            />
+            <div id="imageHelp" class="form-text">Upload a new image to replace the existing one (optional).</div>
+            <input
+              type="hidden"
+              name="listing[image][filename]"
+              value="<%= listing.image && listing.image.filename ? listing.image.filename : '' %>"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <div class="input-group">
+              <span class="input-group-text">₹</span>
+              <input 
+                name="listing[price]" 
+                value="<%= listing.price %>" 
+                type="number"
+                class="form-control"
+                id="price"
+                placeholder="Enter price"
+                min="0"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input
+              name="listing[country]"
+              value="<%= listing.country %>"
+              type="text"
+              class="form-control"
+              id="country"
+              placeholder="Enter country"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input
+              name="listing[location]"
+              value="<%= listing.location %>"
+              type="text"
+              class="form-control"
+              id="location"
+              placeholder="Enter location"
+              required
+            />
+          </div>
+
+          <!-- Category select -->
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="listing[category]" id="category" class="form-select" required>
+              <option value="Trending" <%= listing.category === 'Trending' ? 'selected' : '' %>>Trending</option>
+              <option value="Rooms" <%= listing.category === 'Rooms' ? 'selected' : '' %>>Rooms</option>
+              <option value="Penthouse" <%= listing.category === 'Penthouse' ? 'selected' : '' %>>Penthouse</option>
+              <option value="Beaches" <%= listing.category === 'Beaches' ? 'selected' : '' %>>Beaches</option>
+              <option value="Cabins" <%= listing.category === 'Cabins' ? 'selected' : '' %>>Cabins</option>
+            </select>
+            <div class="invalid-feedback">Please select a category.</div>
+          </div>
+
+          <div class="text-center mb-5">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+    (function(){
+      const form = document.querySelector('form[enctype="multipart/form-data"]');
+      if (!form) return;
+      const maxBytes = parseInt(form.dataset.maxBytes, 10) || 20971520;
+      form.addEventListener('submit', (e) => {
+        const fileInput = document.getElementById('image');
+        if (fileInput && fileInput.files && fileInput.files.length > 0) {
+          const file = fileInput.files[0];
+          if (file.size > maxBytes) {
+            e.preventDefault();
+            alert('Selected file is too large. Maximum allowed size is ' + Math.round(maxBytes / 1024 / 1024) + ' MB.');
+            return false;
+          }
+        }
+      });
+    })();
+  </script>
+

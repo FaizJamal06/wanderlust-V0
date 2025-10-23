@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WanderLust</title>
+  </head>
+  <body>
+    <% layout("layouts/boilerplate") %>
+
+    <div class="row mt-3">
+      <div class="col-8 offset-2">
+        <h3 class="text-center mb-4" style="color: #B197FC;">Create a New Listing</h3>
+  <form method="POST" action="/listings" class="needs-validation" novalidate enctype="multipart/form-data" data-max-bytes="<%= JSON.stringify(process.env.MAX_UPLOAD_SIZE_BYTES || 20971520) %>">
+          <!-- Title field with validation feedback -->
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input
+              name="listing[title]"
+              placeholder="Enter title"
+              type="text"
+              class="form-control"
+              id="title"
+              required
+            />
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please provide a title.</div>
+          </div>
+
+          <!-- Description field with validation feedback -->
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              name="listing[description]"
+              placeholder="Enter description"
+              class="form-control"
+              id="description"
+              required
+            ></textarea>
+            <!-- Added validation feedback -->
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please provide a description.</div>
+          </div>
+
+          <!-- Image field with validation feedback -->
+          <div class="mb-3">
+            <label for="image" class="form-label">Upload Image</label>
+            <input
+              name="listing[image]"
+              type="file"
+              class="form-control"
+              id="image"
+              required
+            />
+            <!-- Added validation feedback -->
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please provide a valid image URL.</div>
+          </div>
+
+          <!-- Price field already has validation feedback -->
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text">₹</span>
+              <input
+                name="listing[price]"
+                placeholder="Enter price"
+                type="number"
+                class="form-control"
+                id="price"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please provide a valid price.</div>
+            </div>
+          </div>
+
+          <!-- Country field with validation feedback -->
+          <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input
+              name="listing[country]"
+              placeholder="Enter country"
+              type="text"
+              class="form-control"
+              id="country"
+              required
+            />
+            <!-- Added validation feedback -->
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please provide a country.</div>
+          </div>
+
+          <!-- Location field with validation feedback -->
+          <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input
+              name="listing[location]"
+              placeholder="Enter location"
+              type="text"
+              class="form-control"
+              id="location"
+              required
+            />
+            <!-- Added validation feedback -->
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please provide a location.</div>
+          </div>
+
+          <!-- Category select -->
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="listing[category]" id="category" class="form-select" required>
+              <option value="Trending">Trending</option>
+              <option value="Rooms">Rooms</option>
+              <option value="Penthouse">Penthouse</option>
+              <option value="Beaches">Beaches</option>
+              <option value="Cabins">Cabins</option>
+            </select>
+            <div class="invalid-feedback">Please select a category.</div>
+          </div>
+
+          <div class="text-center mb-5">
+            <button type="submit" class="btn btn-primary">Add Listing</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      (function(){
+        const form = document.querySelector('form[enctype="multipart/form-data"]');
+        if (!form) return;
+        const maxBytes = parseInt(form.dataset.maxBytes, 10) || 20971520;
+        form.addEventListener('submit', (e) => {
+          const fileInput = document.getElementById('image');
+          if (fileInput && fileInput.files && fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            if (file.size > maxBytes) {
+              e.preventDefault();
+              alert('Selected file is too large. Maximum allowed size is ' + Math.round(maxBytes / 1024 / 1024) + ' MB.');
+              return false;
+            }
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
