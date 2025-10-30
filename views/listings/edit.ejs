@@ -2,7 +2,7 @@
     <% layout("layouts/boilerplate") %>
 
     <div class="row mt-3">
-      <div class="col-8 offset-2">
+      <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
         <h3 class="text-center mb-4" style="color: #B197FC;">Edit your Listing</h3>
   <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" enctype="multipart/form-data" class="needs-validation" novalidate data-max-bytes="<%= JSON.stringify(process.env.MAX_UPLOAD_SIZE_BYTES || 20971520) %>">
           <div class="mb-3">
