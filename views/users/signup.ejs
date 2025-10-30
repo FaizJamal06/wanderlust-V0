@@ -1,27 +1,32 @@
   <% layout("layouts/boilerplate") %>
 
   <div class="row mt-3">
-         <div class="col-8 offset-2">
-              <h1>sign up for  </h1>
+    <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h1 class="text-center mb-4" style="color: #B197FC;">Sign up</h1>
                 <form action="/signup" method="post" class="needs-validation" novalidate>
-                 <div class="mb-3">
-                 <label for="username" class="form-label">Username</label>
-                 <input type="text" name="username" class="form-control" id="username" required>
-                 
-                      </div>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" class="form-control" id="username" required>
+            <div class="invalid-feedback">Please enter a username.</div>
+          </div>
 
-                 <div class="mb-3">
-                   <label for="email" class="form-label">Email</label>
-                   <input type="email" name="email" class="form-control" id="email" required>
-                   
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" id="email" required>
+            <div class="invalid-feedback">Please enter a valid email.</div>
+          </div>
 
-                 <div class="mb-3">
-                   <label for="password" class="form-label">Password</label>
-                   <input type="password" name="password" class="form-control" id="password" required>
-                   
-                 </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="password" required>
+            <div class="invalid-feedback">Please enter a password.</div>
+          </div>
 
-                    <button class="btn btn-primary" type="submit">Sign up</button>
-                </form>
+          <button class="btn btn-primary w-100" type="submit">Sign up</button>
+        </form>
         </div>
+      </div>
+    </div>
   </div>

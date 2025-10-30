@@ -9,10 +9,10 @@
   <body>
     <% layout("layouts/boilerplate") %>
 
-    <div class="listing-show container mt-4">
-      <div class="row gx-4">
-        <!-- Left column: images + details -->
-        <div class="col-lg-8">
+    <div class="listing-show container-fluid container-md mt-4">
+      <div class="row gx-3 gx-md-4">
+        <!-- Main content column -->
+        <div class="col-12 col-lg-8">
           <div class="gallery mb-3">
             <% let showImgSrc = '/images/placeholder.png'; %>
             <% if (listing.image && listing.image.url) { showImgSrc = listing.image.url; } else if (listing.image && listing.image.filename) { showImgSrc = '/uploads/' + listing.image.filename; } %>
@@ -73,12 +73,12 @@
           <% const isOwner = (currentUser._id && listing.owner._id) ? ((typeof currentUser._id.equals === 'function') ? currentUser._id.equals(listing.owner._id) : String(currentUser._id) === String(listing.owner._id)) : false; %>
           <% if (isOwner) { %>
             <div class="btns mt-4 mb-5">
-              <div class="d-flex gap-2">
+              <div class="d-flex flex-column flex-sm-row gap-2">
                 <a href="/listings/<%= listing._id %>/edit" class="btn btn-primary">
                   <i class="fas fa-edit me-2"></i>Edit
                 </a>
-                <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-                  <button class="btn btn-danger">
+                <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE" class="w-100 w-sm-auto">
+                  <button class="btn btn-danger w-100">
                     <i class="fas fa-trash me-2"></i>Delete
                   </button>
                 </form>
