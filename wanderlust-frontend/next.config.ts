@@ -4,10 +4,7 @@ const nextConfig: NextConfig = {
   // Allow Three.js to work with Next.js App Router
   transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
 
-  // Turbopack config (Next.js 16 uses Turbopack by default)
-  turbopack: {
-    root: __dirname,
-  },
+  // Turbopack config removed to prevent outputFileTracingRoot conflict on Vercel
 
   // Allow images from the Express backend and Cloudinary
   images: {

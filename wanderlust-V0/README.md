@@ -13,6 +13,7 @@ It allows users to browse, create, and manage travel listings around the world.
 
 Key features include:
 
+* **Dual Interface:** Serves classic EJS templates and provides a robust JSON API for the [Next.js immersive frontend](../wanderlust-frontend).
 * User authentication (Passport.js)
 * Image uploads with Cloudinary + Multer fallback
 * Map display and geocoding with MapTiler
