@@ -175,7 +175,7 @@ export default async function ListingDetailPage({ params }: Props) {
                 {/* Listing Management Actions (Client Component) */}
                 <ListingActions 
                   listingId={listing._id} 
-                  ownerId={listing.owner?._id || listing.owner} 
+                  ownerId={String(listing.owner?._id || listing.owner || '')} 
                 />
               </div>
             </div>

@@ -5,8 +5,8 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
 async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   const isFormData = options?.body instanceof FormData;
   
-  const headers: HeadersInit = {
-    ...options?.headers,
+  const headers: Record<string, string> = {
+    ...(options?.headers as Record<string, string> || {}),
   };
 
   if (!isFormData) {

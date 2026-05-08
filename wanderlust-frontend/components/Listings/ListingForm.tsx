@@ -113,7 +113,7 @@ export default function ListingForm({ initialData, isEdit }: ListingFormProps) {
           <select
             className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[var(--primary)] transition-all [&>option]:bg-[#0c0f18] [&>option]:text-white"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value as any)}
           >
             {['Trending', 'Rooms', 'Penthouse', 'Beaches', 'Cabins', 'Farms', 'Lakes'].map(c => (
               <option key={c} value={c}>{c}</option>
