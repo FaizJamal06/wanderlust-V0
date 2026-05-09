@@ -143,13 +143,13 @@ export default function ListingsPage() {
           </div>
 
           {/* Add listing CTA */}
-          <a
-            href="http://localhost:8080/listings/new"
+          <Link
+            href="/listings/new"
             className="btn-primary"
             style={{ padding: '9px 20px', fontSize: 13, marginLeft: 'auto' }}
           >
             + Add Listing
-          </a>
+          </Link>
         </div>
       </div>
 

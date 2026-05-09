@@ -259,9 +259,9 @@ export default function LandingClient({
           ) : (
             <div className="text-center py-20" style={{ color: 'var(--text-muted)' }}>
               <p className="text-lg mb-2">No listings yet in this category.</p>
-              <a href="http://localhost:8080/listings/new" className="btn-primary" style={{ display: 'inline-flex' }}>
+              <Link href="/listings/new" className="btn-primary" style={{ display: 'inline-flex' }}>
                 Create one
-              </a>
+              </Link>
             </div>
           )}
         </div>
@@ -287,13 +287,13 @@ export default function LandingClient({
               Share your world with<br />
               <span className="text-gradient-gold">travellers who care</span>
             </h2>
-            <a
-              href="http://localhost:8080/listings/new"
+            <Link
+              href="/listings/new"
               className="btn-primary"
               style={{ fontSize: '1rem', padding: '16px 40px' }}
             >
               List your property →
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -312,9 +312,9 @@ export default function LandingClient({
           <p>© {new Date().getFullYear()} Wanderlust · Built by Faiz Jamal</p>
           <p className="mt-1" style={{ color: 'var(--text-faint)', fontSize: 11 }}>
             Classic listings at{' '}
-            <a href="http://localhost:8080/listings" style={{ color: 'var(--primary)' }}>
-              localhost:8080/listings
-            </a>
+            <Link href="/listings" style={{ color: 'var(--primary)' }}>
+              /listings
+            </Link>
           </p>
         </div>
       </footer>
